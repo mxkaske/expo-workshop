@@ -14,6 +14,7 @@ import {
   NavigationContainerRef,
 } from "@react-navigation/native";
 import Constants from "expo-constants";
+import { Box } from "../themes";
 
 const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEY-${Constants.manifest.sdkVersion}`;
 
@@ -86,16 +87,19 @@ const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
   }
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      {...{
-        onReady,
-        onStateChange,
-        initialState,
-      }}
-    >
-      {children}
-    </NavigationContainer>
+    // needed - otherwise flicker happens on dark mode when screen is changed
+    <Box flex={1} backgroundColor="mainBackground">
+      <NavigationContainer
+        ref={navigationRef}
+        {...{
+          onReady,
+          onStateChange,
+          initialState,
+        }}
+      >
+        {children}
+      </NavigationContainer>
+    </Box>
   );
 };
 
