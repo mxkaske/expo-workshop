@@ -37,24 +37,29 @@ export const theme = createTheme({
   textVariants: {
     title: {
       fontSize: 28,
+      fontFamily: "OpenSans-Bold",
       color: "baseTitle",
     },
     subtitle: {
       fontSize: 26,
+      fontFamily: "OpenSans-Bold",
       lineHeight: 30,
       color: "baseText",
     },
     body: {
       fontSize: 18,
+      fontFamily: "OpenSans-Regular",
       color: "baseText",
     },
     button: {
       fontSize: 18,
       color: "secondary",
+      fontFamily: "OpenSans-Italic",
       textAlign: "center",
     },
     description: {
       fontSize: 15,
+      fontFamily: "OpenSans-Light",
       color: "baseText",
     },
   },
