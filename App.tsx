@@ -2,6 +2,9 @@ import React from "react";
 import { NavigationContainer } from "./src/navigation";
 import StackNavigation from "./src/navigation/StackNavigation";
 import { ThemeProvider } from "./src/themes";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./src/store";
 
 const fonts = {
   "OpenSans-Bold": require("./assets/fonts/OpenSans-Bold.ttf"),
@@ -14,10 +17,14 @@ const fonts = {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <NavigationContainer {...{ fonts }}>
-        <StackNavigation />
-      </NavigationContainer>
-    </ThemeProvider>
+    <Provider {...{ store }}>
+      <PersistGate {...{ persistor }}>
+        <ThemeProvider>
+          <NavigationContainer {...{ fonts }}>
+            <StackNavigation />
+          </NavigationContainer>
+        </ThemeProvider>
+      </PersistGate>
+    </Provider>
   );
 }
