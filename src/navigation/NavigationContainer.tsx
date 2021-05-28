@@ -12,9 +12,12 @@ import {
   InitialState,
   NavigationContainer,
   NavigationContainerRef,
+  DefaultTheme,
+  DarkTheme,
 } from "@react-navigation/native";
 import Constants from "expo-constants";
 import { Box } from "../themes";
+import { useDarkMode } from "../hooks";
 
 const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEY-${Constants.manifest.sdkVersion}`;
 
@@ -52,6 +55,8 @@ const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
 
   const routeNameRef = useRef<string | undefined>();
   const navigationRef = useRef<NavigationContainerRef>(null);
+
+  const darkMode = useDarkMode();
 
   const ready = useLoadAssets(assets || [], fonts || {});
 
@@ -96,6 +101,7 @@ const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
           onStateChange,
           initialState,
         }}
+        theme={darkMode ? DarkTheme : DefaultTheme}
       >
         {children}
       </NavigationContainer>
