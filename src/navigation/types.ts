@@ -1,4 +1,4 @@
-import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
 
 export interface AppNavigationProps<RouteName extends keyof AppRoutes> {
@@ -9,7 +9,7 @@ export interface AppNavigationProps<RouteName extends keyof AppRoutes> {
 export type AppRoutes = {
   Home: undefined;
   TodoList: undefined;
-  Todo: { id: string };
+  Todo: { id: string | number };
 };
 
 export type AppStackNavigationProps = StackNavigationProp<AppRoutes>;

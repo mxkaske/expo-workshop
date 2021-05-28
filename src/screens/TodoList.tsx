@@ -8,7 +8,7 @@ const TodoList: FC<AppNavigationProps<"TodoList">> = ({
   route,
 }) => {
   return (
-    <Box flex={1} alignItems="center" justifyContent="center">
+    <Box flex={1}>
       <List />
     </Box>
   );

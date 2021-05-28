@@ -3,22 +3,35 @@ import { Button } from "../ui";
 import { Box } from "../../themes";
 import { useNavigation } from "@react-navigation/core";
 import { AppStackNavigationProps } from "../../navigation/types";
-
-const data = ["Todo 1", "Todo 2", "Todo 3"];
+import { ActivityIndicator, ScrollView } from "react-native";
+import { useTodos } from "../../hooks";
 
 const List: FC = () => {
   const navigation = useNavigation<AppStackNavigationProps>();
+  const { data, isFetching } = useTodos();
   return (
-    <Box flex={1} alignItems="center" justifyContent="center">
-      {data.map((item, idx) => (
-        <Button
-          key={item}
-          label={item}
-          onPress={() => navigation.push("Todo", { id: item })}
-          marginBottom={idx !== data.length - 1 ? "m" : undefined}
-        />
-      ))}
-    </Box>
+    <ScrollView>
+      <Box
+        padding="l"
+        flex={1}
+        minHeight="100%"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {isFetching && !data ? (
+          <ActivityIndicator />
+        ) : (
+          data?.map((todo, idx) => (
+            <Button
+              key={todo.id}
+              label={`Todo Nr. ${todo.id}`}
+              onPress={() => navigation.push("Todo", { id: todo.id })}
+              marginBottom={idx !== data.length - 1 ? "m" : undefined}
+            />
+          ))
+        )}
+      </Box>
+    </ScrollView>
   );
 };
 
