@@ -58,7 +58,7 @@ export const theme = createTheme({
       textAlign: "center",
     },
     description: {
-      fontSize: 15,
+      fontSize: 16,
       fontFamily: "OpenSans-Light",
       color: "baseText",
     },
